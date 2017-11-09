@@ -1,0 +1,194 @@
+{
+	"info": {
+		"name": "Elastic search",
+		"_postman_id": "e5120e3c-5230-4446-cbeb-3468fa0f8d17",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Simple search",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\" : {\n        \"match\" : {\n            \"id\": \"29/SC\"\n            }\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/store_index/_search?q=id:27",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"store_index",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "id:27",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\" : {\n        \"match\" : {\n            \"_id\" : \"prod181010055\"\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/product_catalog/product/_search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"product_catalog",
+						"product",
+						"_search"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\" : {\n        \"match\" : {\n            \"_id\" : \"*\"\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/product_catalog/product/{{id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"product_catalog",
+						"product",
+						"{{id}}"
+					]
+				},
+				"description": "Edit the request body"
+			},
+			"response": []
+		},
+		{
+			"name": "Search by parent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\" : {\n        \"parent_id\" : {\n          \"type\": \"{{parent type}}\",\n          \"id\": \"{{parent id}}\"\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/product_catalog/_search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"product_catalog",
+						"_search"
+					]
+				},
+				"description": "Edit the request body"
+			},
+			"response": []
+		},
+		{
+			"name": "Search by multiple fields",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\" : {\n        \"bool\": {\n          \"must\": [\n            { \"term\": { \"field1\": \"value 1\" } },\n            { \"term\": { \"field2\": \"value 2\" } }\n        ]\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/store_sku_inventory_index/_search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"store_sku_inventory_index",
+						"_search"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get mapping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\" : {\n        \"match\" : {\n            \"about\" : \"rock climbing\"\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/product_catalog/_mapping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"product_catalog",
+						"_mapping"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
