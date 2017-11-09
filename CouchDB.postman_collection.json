@@ -1,0 +1,158 @@
+{
+	"info": {
+		"name": "CouchDB",
+		"_postman_id": "a27cd699-3871-6198-8ed7-453b08a62e60",
+		"description": "Add {{authorization}} to your environment variables for Authorization header.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "All docs in database",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:5984/contents_apps/_all_docs",
+					"host": [
+						"localhost"
+					],
+					"port": "5984",
+					"path": [
+						"contents_apps",
+						"_all_docs"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "10 docs in database",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var rows = JSON.parse(responseBody).rows;",
+							"postman.setGlobalVariable(\"rows\", JSON.stringify(rows));"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:5984/contents_apps/_all_docs?limit=10",
+					"host": [
+						"localhost"
+					],
+					"port": "5984",
+					"path": [
+						"contents_apps",
+						"_all_docs"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk insert {{rows}}",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"docs\": {{rows}}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5984/contents_apps/_bulk_docs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5984",
+					"path": [
+						"contents_apps",
+						"_bulk_docs"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Drop database",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5984/contents_apps",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5984",
+					"path": [
+						"contents_apps"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create database",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5984/contents_apps",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5984",
+					"path": [
+						"contents_apps"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

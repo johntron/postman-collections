@@ -1,0 +1,416 @@
+{
+	"info": {
+		"name": "Solr",
+		"_postman_id": "5ad0eca0-8097-b70f-2a04-ee8ce89c5129",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add to index multiple",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8983/solr/update/json?wt=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8983",
+					"path": [
+						"solr",
+						"update",
+						"json"
+					],
+					"query": [
+						{
+							"key": "wt",
+							"value": "json"
+						}
+					]
+				},
+				"description": "Add multiple documents to the index"
+			},
+			"response": []
+		},
+		{
+			"name": "Commit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<commit/>"
+				},
+				"url": {
+					"raw": "http://localhost:8983/solr/update?wt=xml",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8983",
+					"path": [
+						"solr",
+						"update"
+					],
+					"query": [
+						{
+							"key": "wt",
+							"value": "xml"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Clear index",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<delete><query>*:*</query></delete>"
+				},
+				"url": {
+					"raw": "http://localhost:8983/solr/update?wt=xml",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8983",
+					"path": [
+						"solr",
+						"update"
+					],
+					"query": [
+						{
+							"key": "wt",
+							"value": "xml"
+						}
+					]
+				},
+				"description": "Delete entire index"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete by ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8983/solr/update/json?wt=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8983",
+					"path": [
+						"solr",
+						"update",
+						"json"
+					],
+					"query": [
+						{
+							"key": "wt",
+							"value": "json"
+						}
+					]
+				},
+				"description": "Delete document(s) by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Index from DB",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8983/solr/collection1/dataimport?command=full-import",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8983",
+					"path": [
+						"solr",
+						"collection1",
+						"dataimport"
+					],
+					"query": [
+						{
+							"key": "command",
+							"value": "full-import"
+						}
+					]
+				},
+				"description": "Indexes from database"
+			},
+			"response": []
+		},
+		{
+			"name": "Phonetic Query Debugged",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8983/solr/select?q=christopher&qf=first_name first_phonetic&defType=edismax&fl=*&debugQuery=true&omitHeader=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8983",
+					"path": [
+						"solr",
+						"select"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "christopher"
+						},
+						{
+							"key": "qf",
+							"value": "first_name first_phonetic"
+						},
+						{
+							"key": "defType",
+							"value": "edismax"
+						},
+						{
+							"key": "fl",
+							"value": "*"
+						},
+						{
+							"key": "debugQuery",
+							"value": "true"
+						},
+						{
+							"key": "omitHeader",
+							"value": "true"
+						}
+					]
+				},
+				"description": "Debugged phonetic query"
+			},
+			"response": []
+		},
+		{
+			"name": "Query by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8983/solr/select?q=id:1&omitHeader=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8983",
+					"path": [
+						"solr",
+						"select"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "id:1"
+						},
+						{
+							"key": "omitHeader",
+							"value": "true"
+						}
+					]
+				},
+				"description": "Retrieve document(s) by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Reload core",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8983/solr/admin/cores?action=RELOAD&core=collection1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8983",
+					"path": [
+						"solr",
+						"admin",
+						"cores"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "RELOAD"
+						},
+						{
+							"key": "core",
+							"value": "collection1"
+						}
+					]
+				},
+				"description": "Reloads the Solr core"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8983/solr/select?q=*:*&omitHeader=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8983",
+					"path": [
+						"solr",
+						"select"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "*:*"
+						},
+						{
+							"key": "omitHeader",
+							"value": "true"
+						}
+					]
+				},
+				"description": "Return all documents"
+			},
+			"response": []
+		},
+		{
+			"name": "Non-phonetic query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8983/solr/select?q=christopher&qf=first_name&defType=edismax&omitHeader=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8983",
+					"path": [
+						"solr",
+						"select"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "christopher"
+						},
+						{
+							"key": "qf",
+							"value": "first_name"
+						},
+						{
+							"key": "defType",
+							"value": "edismax"
+						},
+						{
+							"key": "omitHeader",
+							"value": "true"
+						}
+					]
+				},
+				"description": "Retrieve document(s) by field value"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete by ID copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"delete\": { \"query\":\"id:1\" },\n    \"commit\": {}\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8983/solr/update/json?wt=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8983",
+					"path": [
+						"solr",
+						"update",
+						"json"
+					],
+					"query": [
+						{
+							"key": "wt",
+							"value": "json"
+						}
+					]
+				},
+				"description": "Delete document(s) by ID"
+			},
+			"response": []
+		}
+	]
+}
